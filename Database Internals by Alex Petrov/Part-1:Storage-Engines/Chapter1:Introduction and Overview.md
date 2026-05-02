@@ -1,1 +1,9 @@
+<div dir="rtl">
+## معماری DBMS
 
+معماری Database management systemها از مدل client/server استفاده می‌کنند، به این صورت که instanceهای database system (همان nodeها) نقش server را ایفا می‌کنند، و instanceهای اپلیکیشن نقش client را دارند.
+درخواست‌های client از طریق بخشی از DBMS به نام transport subsystem وارد می‌شوند. این درخواست‌ها به شکل queryها هستند که اغلب به یک query language خاص بیان می‌شوند. transport subsystem همچنین مسئول ارتباط با nodeهای دیگر در database cluster است.
+پس از دریافت، transport subsystem درخواست یا همان query را به query processor تحویل می‌دهد. query processor آن را parse، تفسیر (interpret) و اعتبارسنجی (validate) می‌کند. در ادامه، بررسی‌های access control انجام می‌شوند، زیرا این بررسی‌ها تنها پس از interpret شدن کامل query قابل انجام هستند.
+درخواست یا query پارس شده به query optimizer ارسال می‌شود. query optimizer ابتدا بخش‌های غیرممکن و اضافی (redundant) query را حذف می‌کند(مثلا SELECT * FROM users WHERE name="ali" AND name="hasan" این query هیچوقت اجرا نمیشود زیرا شرط آن امکان پذیر نیست)، و سپس بر اساس internal statistics و محل ذخیره‌سازی داده‌ها (اینکه کدام nodeها در cluster داده را در اختیار دارند و هزینه‌های مربوط به انتقال آن داده) تلاش می‌کند کارآمدترین راه را برای اجرای query پیدا کند. query optimizer هم عملیات رابطه ای مورد نیاز برای اجرای query را مدیریت می‌کند (که معمولاً به صورت یک dependency tree نمایش داده می‌شوند) و هم بهینه‌سازی‌هایی مثل index ordering، cardinality estimation، و انتخاب access methodها را انجام می‌دهد.query معمولاً در قالب یک execution plan (یا query plan) ارائه می‌شود: یک دنباله از عملیات (sequence of operations) که باید برای کامل شدن نتایج آن اجرا شوند. از آنجا که یک query مشابه را می‌توان با استفاده از execution planهای مختلف که از نظر کارایی (efficiency) متفاوت هستند، اجرا کرد، optimizer بهترین plan موجود را انتخاب می‌کند.
+
+</div>
