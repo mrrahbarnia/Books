@@ -1,4 +1,0 @@
-<div dir="rtl">
-معرفی دیتابیس postgresql
-
-</div>
